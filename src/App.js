@@ -1,28 +1,49 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+class Background extends Component {
+    constructor() {
+        super();
+        this.state = {
+            orders: []
+        };
+    };
+
+
+    componentDidMount() {
+        fetch('http://localhost:8080/RDBA/orders')
+            .then(results => {
+                return results.json();
+            }).then(data => {
+            console.log(data);
+            let orders = data.map((order) => {
+                    return (
+                        <div key={order.id} class="list-group-item">
+                            {order.id}
+                            {order.client}
+                            {order.user.name}
+                            {order.date}
+                        </div>
+                    )
+                }
+            )
+            this.setState({orders: orders});
+
+        });
+
+        // const response = fetch('http://localhost:8080/RDBA/orders');
+        // const body = await response.json();
+        // this.setState({ orders: body, isLoading: false });
+    }
+
+    render() {
+        return (
+            <div class="list-group">
+                {this.state.orders}
+            </div>
+        );
+    }
 }
 
-export default App;
+export default Background;
