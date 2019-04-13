@@ -32,9 +32,7 @@ class Background extends Component {
 
         });
 
-        // const response = fetch('http://localhost:8080/RDBA/orders');
-        // const body = await response.json();
-        // this.setState({ orders: body, isLoading: false });
+
     }
 
     render() {
