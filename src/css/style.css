@@ -1,0 +1,29 @@
+.add {
+    width: 500px;
+    padding: 15px;
+    margin: 0 auto;
+
+}
+.add__btn {
+    box-sizing: content-box;
+    color: #282c34;
+    text-transform: uppercase;
+}
+html {
+
+}
+#root {
+
+    height: auto;
+}
+label{
+    padding:5px;
+}
+.buffer{
+    padding-top: 5px;
+    text-align: right;
+    float: right;
+}
+.black, .back:hover, .back:visited{
+    color: #bcdff1;
+}
