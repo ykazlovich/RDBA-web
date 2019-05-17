@@ -16,30 +16,7 @@ class Orders extends React.Component {
             .then(results => {
                 return results.json();
             }).then(data => {
-            console.log(data);
-            let orders = data.map((order) => {
-                    var formattedDate = LocalDateTime
-                        .parse(order.date)
-                        .format(DateTimeFormatter
-                            .ofPattern('M/d/yyyy HH:mm'))
-                        .toString();
-
-                    return (
-                        <div className="row list-group-item" key={order.id}>
-                            <div className='col'>{order.id}</div>
-                            <div className='col'>{order.client.name}</div>
-                            <div className='col'>{formattedDate}</div>
-                            <div className='col'>{order.item.iname}</div>
-                            <div className='col'>{order.item.serialnumber}</div>
-                            <div className='col'>{order.description}</div>
-                            <div className='col'><a className='btn btn-primary' href={this.state.link + order.id}>Edit</a>
-                            </div>
-                        </div>
-                    )
-                }
-            );
-            this.setState({orders: orders});
-
+            this.setState({orders: data});
         });
     }
 
@@ -59,7 +36,26 @@ class Orders extends React.Component {
                 </div>
 
                 <div className="list-group">
-                    {this.state.orders}
+                    {this.state.orders.map(order => {
+                        let formattedDate = LocalDateTime
+                            .parse(order.date)
+                            .format(DateTimeFormatter
+                                .ofPattern('M/d/yyyy HH:mm'))
+                            .toString();
+                        return (
+                            <div className="row list-group-item" key={order.id}>
+                                <div className='col'>{order.id}</div>
+                                <div className='col'>{order.client.name}</div>
+                                <div className='col'>{formattedDate}</div>
+                                <div className='col'>{order.item.iname}</div>
+                                <div className='col'>{order.item.serialnumber}</div>
+                                <div className='col'>{order.description}</div>
+                                <div className='col'><a className='btn btn-primary'
+                                                        href={this.state.link + order.id}>Edit</a>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
 
             </div>
