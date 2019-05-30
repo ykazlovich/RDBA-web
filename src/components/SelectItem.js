@@ -4,12 +4,15 @@ import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 class SelectItem extends React.Component {
 
+
     constructor() {
         super();
 
         this.state = {
+            initLink: 'http://localhost:8080/RDBA/v1/items?search=',
             items: '',
-            link: 'http://localhost:8080/RDBA/v1/items/',
+            textSearch: '',
+            link: 'http://localhost:8080/RDBA/v1/items?search=',
             showModal: false,
             itemsText: new Map(),
             newItemName: '',
@@ -40,6 +43,17 @@ class SelectItem extends React.Component {
         ));
         this.handleCloseModal();
     };
+
+    searchTextChange = (e) => {
+        const {initLink} = this.state;
+
+        this.setState(
+            {
+                link: initLink + e.currentTarget.value
+            }, function (){ this.componentDidMount()}
+            );
+
+    }
 
     addNewItem = (e) => {
         Promise.all([this.sendRequest()]).then(([item]) => {
@@ -126,6 +140,12 @@ class SelectItem extends React.Component {
                                         </button>
                                     </div>
                                 </div>
+
+                            <div className='container'>
+                                <div className='form-inline'>
+                                    <input className='form-control' type='text' onChange={this.searchTextChange}/>
+                                </div>
+                            </div>
 
                                 <div className="container">
                                     <div className="row list-group-item">
