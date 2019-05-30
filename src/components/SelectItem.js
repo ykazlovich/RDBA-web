@@ -50,8 +50,10 @@ class SelectItem extends React.Component {
         this.setState(
             {
                 link: initLink + e.currentTarget.value
-            }, function (){ this.componentDidMount()}
-            );
+            }, function () {
+                this.componentDidMount()
+            }
+        );
 
     }
 
@@ -126,36 +128,39 @@ class SelectItem extends React.Component {
 
                         <ModalBody className='modal-content modal-cc'>
 
-                                <div className='container'>
-                                    <div className='form-inline'>
-                                        <div className='form-group'>
-                                            <label className='mb-3'>Model:</label>
-                                            <input className='form-control mb-3' type='text' placeholder=''
-                                                   onChange={this.onChangeNewItemModel}/>
-                                            <label className='mb-3'>Serial Number:</label>
-                                            <input className='form-control mb-3' type='text' placeholder=''
-                                                   onChange={this.onChangeNewItemSerialNumber}/>
-                                        </div>
-                                        <button className='btn btn-primary mb-3' onClick={this.addNewItem}>Add new
-                                        </button>
-                                    </div>
-                                </div>
-
                             <div className='container'>
                                 <div className='form-inline'>
-                                    <input className='form-control' type='text' onChange={this.searchTextChange}/>
+                                    <label className='mb-lg-0'>Add a new item:</label>
+                                    <div className='form-group'>
+                                        <label className='mb-3'>Model:</label>
+                                        <input className='form-control mb-3' type='text' placeholder=''
+                                               onChange={this.onChangeNewItemModel}/>
+                                        <label className='mb-3'>Serial Number:</label>
+                                        <input className='form-control mb-3' type='text' placeholder=''
+                                               onChange={this.onChangeNewItemSerialNumber}/>
+                                    </div>
+                                    <button className='btn btn-primary mb-3' onClick={this.addNewItem}>Add new
+                                    </button>
                                 </div>
                             </div>
 
-                                <div className="container">
-                                    <div className="row list-group-item">
-                                        <div className='col-1'>ID</div>
-                                        <div className='col-2'>Model</div>
-                                        <div className='col'>Serial number</div>
-                                        <div className='col'>Select</div>
-                                    </div>
-                                    {this.state.items}
+                            <div className='container'>
+                                <div className='form-group'>
+                                    <label className='mb-0'>Search by model or serial number:</label>
+                                    <input className='form-control' type='text' onChange={this.searchTextChange}/>
+
                                 </div>
+                            </div>
+
+                            <div className="container">
+                                <div className="row list-group-item">
+                                    <div className='col-1'>ID</div>
+                                    <div className='col-2'>Model</div>
+                                    <div className='col'>Serial number</div>
+                                    <div className='col'>Select</div>
+                                </div>
+                                {this.state.items}
+                            </div>
 
                         </ModalBody>
 
